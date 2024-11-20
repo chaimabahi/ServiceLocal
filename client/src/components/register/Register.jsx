@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../assets/Login.png";
-import { Circle } from "lucide-react";
+import { Circle, Hand } from "lucide-react";
 
 const Register = () => {
   const [accountType, setAccountType] = useState(""); // Track selected account type
@@ -9,12 +9,15 @@ const Register = () => {
 
   const handleNext = () => {
     if (accountType === "Business") {
-      navigate("/business-register"); // Navigate to Business Register page
+      navigate("/business-register"); 
     } else if (accountType === "User") {
-      navigate("/user-register"); // Navigate to User Register page
+      navigate("/user-register"); 
     } else {
       alert("Please select an account type.");
     }
+  };
+  const handleLog = () => {
+    navigate("/loginuser");
   };
 
   return (
@@ -119,8 +122,9 @@ const Register = () => {
             <button
               type="button"
               className="w-1/2 bg-[#a9a8a8] text-white py-3 rounded-md hover:bg-[#3c3c3c] transition ml-2"
+              onClick={handleLog}
             >
-              Help!
+              Login 
             </button>
           </div>
         </div>

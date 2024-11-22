@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import BS from "../assets/Login.png";
 import { Circle } from "lucide-react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const LoginUser = () => { 
+const LoginUser = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); 
-
-  const handleNext = () => {
-    navigate("/detailsBusiness");
+  const handleNext = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:9070/api/users/login", {
+        email,
+        password,
+      });
+  
+      // Save token in localStorage or Redux
+      localStorage.setItem("token", response.data.token);  // Save token to local storage
+  
+      // Handle successful login (e.g., navigate to another page)
+      console.log(response.data.message);  // Show success message
+      navigate("/UserAccueil");
+    } catch (err) {
+      // Handle login error
+      setError("Invalid email or password");
+    }
+  };
+  
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous page
   };
 
   return (
@@ -21,7 +44,7 @@ const LoginUser = () => {
             alt="Services Illustration"
             className="max-w-full mb-4"
           />
-          
+
           {/* Circles Section */}
           <div className="flex space-x-4 justify-center mt-4">
             {/* Gray Circle 1 */}
@@ -45,14 +68,16 @@ const LoginUser = () => {
       {/* Right Section */}
       <div className="flex flex-col items-center justify-center w-full lg:w-1/2 p-8">
         <div className="w-full max-w-md">
-          <h1 className="text-2xl font-semibold mb-6">Connect to your profil</h1>
-          <p className="text-gray-700 mb-6">user profile</p>
-          <form>
+          <h1 className="text-2xl font-semibold mb-6">Connect to your profile</h1>
+          <p className="text-gray-700 mb-6">User profile</p>
+          <form onSubmit={handleNext}>
             <div className="mb-4">
               <input
                 type="email"
                 name="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md"
                 required
               />
@@ -61,22 +86,25 @@ const LoginUser = () => {
               <input
                 type="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md"
                 required
               />
             </div>
-            
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+
             <div className="flex justify-between">
               <button
                 type="button"
+                onClick={handleBack}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
               >
                 Back
               </button>
               <button
-                type="button"
-                onClick={handleNext} 
+                type="submit"
                 className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600"
               >
                 Next
@@ -89,4 +117,4 @@ const LoginUser = () => {
   );
 };
 
-export default LoginUser; 
+export default LoginUser;

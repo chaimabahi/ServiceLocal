@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import BS from "../assets/Login.png";
 import { Circle } from "lucide-react";
 import { useNavigate } from "react-router-dom"; 
+import axios from "axios";
 
 const UserRegister = () => {
   const navigate = useNavigate(); 
+  const [userData, setUserData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
 
-  const handleNext = () => {
-    
-    navigate("/UserAccueil");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
   };
+
+  const handleNext = async () => {
+    try {
+      const response = await axios.post('http://localhost:9070/api/users/register', userData, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+      console.log(response.data); // Success message
+      navigate("/UserAccueil");  // Redirect after successful registration
+    } catch (error) {
+      // Handle error properly
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Response error:", error.response.data);  // Error message from server
+        console.error("Status code:", error.response.status);    // HTTP status code
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("Request error:", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error:", error.message);
+      }
+    }
+  };
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+  
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
@@ -51,9 +91,11 @@ const UserRegister = () => {
             <div className="mb-4">
               <input
                 type="text"
-                name="FullName"
+                name="fullName"
                 placeholder="FullName"
                 className="w-full p-3 border border-gray-300 rounded-md"
+                value={userData.fullName}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -63,29 +105,36 @@ const UserRegister = () => {
                 name="email"
                 placeholder="email"
                 className="w-full p-3 border border-gray-300 rounded-md"
+                value={userData.email}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="mb-4">
               <input
-                type="text"
-                name="passeword"
+                type="password"
+                name="password"
                 placeholder="password"
                 className="w-full p-3 border border-gray-300 rounded-md"
+                value={userData.password}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="mb-6">
               <input
                 type="text"
-                name="Phone"
+                name="phone"
                 placeholder="Phone"
                 className="w-full p-3 border border-gray-300 rounded-md"
+                value={userData.phone}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="flex justify-between">
               <button
+                onClick={handleBack}
                 type="button"
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
               >

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3cf28877-0513-4d13-81fe-ee8bbac3bc21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/controller/UserBusinessRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/RequestStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/UserBusinessRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/repository/UserBusinessRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/service/UserBusinessRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/accueilUser/MainContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/accueilUser/MainContent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/accueilUser/ServiceCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/accueilUser/ServiceCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/accueilUser/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/accueilUser/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/register/BusinessRegister.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/BusinessRegister.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/register/DetailsBusiness.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/DetailsBusiness.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/Business.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/Business.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/java/com/service/serviceLocaux/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/serviceLocaux/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/serviceLocaux/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2pFLwajBtBpByUB1xiYajojDVXE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3cf28877-0513-4d13-81fe-ee8bbac3bc21" name="Changes" comment="" />
+      <created>1732357116311</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732357116311</updated>
+    </task>
+    <servers />
+  </component>
+</project>

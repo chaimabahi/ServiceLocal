@@ -1,6 +1,11 @@
 package com.service.serviceLocaux.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name = "businesses")
@@ -10,29 +15,42 @@ public class Business {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Business owner's name is required")
+    @Size(max = 255, message = "Name cannot exceed 255 characters")
     @Column(nullable = false, length = 255)
-    private String name; // Name of the person or business owner
+    private String name;
 
+    @NotBlank(message = "Profession is required")
     @Column(nullable = false, length = 255)
-    private String profession; // Profession or role
+    private String profession;
 
+    @NotBlank(message = "Business type is required")
     @Column(nullable = false, length = 255)
-    private String type; // Business type (self-employed or company)
+    private String type;
 
+    @NotBlank(message = "Shop name is required")
     @Column(nullable = false, length = 255)
-    private String shopName; // Name of the shop or company
+    private String shopName;
 
+    @NotBlank(message = "Business registration name is required")
     @Column(nullable = false, length = 255)
-    private String businessName; // Business registration name
+    private String businessName;
 
+    @NotBlank(message = "Business type is required")
     @Column(nullable = false, length = 50)
-    private String businessType; // Business type (e.g., retail, service)
+    private String businessType;
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     @Column(nullable = false, length = 255, unique = true)
-    private String email; // Business email
+    private String email;
 
     @Column(nullable = false, length = 255)
     private String password; // Encrypted password
+
+    // Relationship with requests
+    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserBusinessRequest> requests;
 
     // Getters and Setters
     public Long getId() {
@@ -105,5 +123,13 @@ public class Business {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<UserBusinessRequest> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<UserBusinessRequest> requests) {
+        this.requests = requests;
     }
 }

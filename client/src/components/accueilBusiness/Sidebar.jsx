@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Home, LayoutDashboard, Bookmark, MessageSquare, Settings, HelpCircle, Phone, Moon, LogOut, Search } from 'lucide-react';
-import { Link } from "react-router-dom";
+
 const Sidebar = () => (
     <div className="w-64 min-h-screen bg-white border-r border-gray-200 p-6">
       <div className="flex items-center mb-8">
         <div className="w-8 h-8 bg-purple-500 rounded-lg"></div>
-        <span className="ml-2 text-xl font-semibold">Task Makerr</span>
+        <span className="ml-2 text-xl font-semibold">Bussines</span>
       </div>
       
       <div className="mb-8">
@@ -14,20 +14,12 @@ const Sidebar = () => (
         <nav className="space-y-4">
           <div className="flex items-center text-purple-500 bg-purple-50 px-4 py-2 rounded-lg">
             <Home size={20} />
-            <span className="ml-3">Home</span>
+            <span className="ml-3">Dashboard</span>
           </div>
           <div className="flex items-center text-gray-600 px-4 py-2">
-            <LayoutDashboard size={20} />
+            <MessageSquare size={20} />
             <span className="ml-3">Requests</span>
           </div>
-          <Link
-          to="/saved" // Add the link to "/saved"
-          className="flex items-center text-gray-600 px-4 py-2"
-        >
-          <Bookmark size={20} />
-          <span className="ml-3">Saved</span>
-        </Link>
-         
           <div className="flex items-center text-gray-600 px-4 py-2">
             <Settings size={20} />
             <span className="ml-3">Setting</span>

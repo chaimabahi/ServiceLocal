@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,19 +22,24 @@ public class User {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Column(nullable = false)
     private String password;
 
     @NotBlank(message = "Phone number is required")
     @Size(max = 15, message = "Phone number cannot exceed 15 characters")
+    @Column(nullable = false, length = 15)
     private String phone;
 
-    // Getters and Setters
+    // Relationship with requests
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserBusinessRequest> requests;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -71,5 +78,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<UserBusinessRequest> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<UserBusinessRequest> requests) {
+        this.requests = requests;
     }
 }

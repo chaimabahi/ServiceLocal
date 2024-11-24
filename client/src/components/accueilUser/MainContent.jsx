@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
-import axios from "axios"; // Ensure Axios is installed: npm install axios
+import axios from "axios"; 
+import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 
 const MainContent = () => {
@@ -64,6 +65,7 @@ const MainContent = () => {
       <div className="grid grid-cols-3 gap-6">
         {filteredServices.length > 0 ? (
           filteredServices.map((service, index) => (
+            <Link to={`/business/${service.id}`}>
             <ServiceCard
               key={service.id || index}
               highlighted={index === 0} // Highlight the first card as an example
@@ -71,6 +73,7 @@ const MainContent = () => {
               businessName={service.businessName}
               rating={service.rating || 4.3} // Provide a default rating
             />
+            </Link>
           ))
         ) : (
           <div className="col-span-3 text-center text-gray-500">

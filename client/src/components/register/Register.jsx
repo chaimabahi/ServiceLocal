@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "../assets/Login.png";
-import { Circle, Hand } from "lucide-react";
+import { Circle } from "lucide-react";
 
 const Register = () => {
   const [accountType, setAccountType] = useState(""); // Track selected account type
@@ -16,8 +16,15 @@ const Register = () => {
       alert("Please select an account type.");
     }
   };
+
   const handleLog = () => {
-    navigate("/loginuser");
+    if (accountType === "Business") {
+      navigate("/business-login"); // Navigate to Business login
+    } else if (accountType === "User") {
+      navigate("/user-login"); // Navigate to User login
+    } else {
+      alert("Please select an account type.");
+    }
   };
 
   return (
@@ -41,7 +48,6 @@ const Register = () => {
             <div className="bg-gray-500 rounded-full flex items-center justify-center w-3 h-3">
               <Circle className="text-white" size={0} />
             </div>
-
 
             {/* Gray Circle 2 */}
             <div className="bg-gray-500 rounded-full flex items-center justify-center w-3 h-3">

@@ -17,10 +17,11 @@ public class WebConfig {
         configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Frontend URL
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(true);  // Allow credentials (cookies, etc.)
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // Apply CORS settings to all endpoints
         return source;
     }
 }
+

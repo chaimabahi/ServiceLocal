@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import BS from "../assets/details.png"
 import { Circle } from 'lucide-react';
 
-const BusinessRegister = () => {
+
+
+const DetailsBusiness = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    ...location.state?.formData, // Pre-fill data from the previous step
+    businessName: "",
+    businessType: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post("http://localhost:9070/api/businesses/register", formData);
+      alert("Business registered successfully!");
+      navigate("/admin"); // Navigate to a success page or reset
+    } catch (error) {
+      console.error("Error registering business:", error);
+      alert("Registration failed.");
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row h-screen">
     {/* Left Section */}
@@ -40,53 +71,60 @@ const BusinessRegister = () => {
       {/* Right Section */}
       <div className="flex flex-col items-center justify-center w-full lg:w-1/2 p-8">
         <div className="w-full max-w-md">
-          <h1 className="text-2xl font-semibold mb-6">Create an account</h1>
-          <p className="text-gray-700 mb-6">Business Details</p>
-          <form>
-            <div className="mb-4">
+        <h1 className="text-2xl font-semibold mb-6">Complete Registration</h1>
+        <form>
+          <div className="mb-4">
             <input
               type="text"
-              name="Business Name"
-              placeholder="Business Name"
+              name="businessName"
+              placeholder="Business Registration Name"
+              value={formData.businessName}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-             
               required
             />
-            </div>
-            <div className="mb-4">
+          </div>
+          <div className="mb-4">
             <input
               type="text"
-              name="Business Type"
+              name="businessType"
               placeholder="Business Type"
+              value={formData.businessType}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-             
               required
             />
-            </div>
-            <div className="mb-4">
+          </div>
+          <div className="mb-4">
             <input
-              type="text"
-              name="Business Email"
-              placeholder="Business Email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-md"
-             
               required
             />
-            </div>
-           
-            <div className="flex justify-between">
-              <button
-                type="button"
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                Back
-              </button>
-              <button
-                type="submit"
-                className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600"
-              >
-                Next
-              </button>
+          </div>
+          <div className="mb-4">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600"
+            >
+              Submit
+            </button>
             </div>
           </form>
         </div>
@@ -95,4 +133,4 @@ const BusinessRegister = () => {
   );
 };
 
-export default BusinessRegister;
+export default DetailsBusiness;

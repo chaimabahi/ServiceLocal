@@ -25,6 +25,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/businesses/register", "/api/businesses/login").permitAll()
                         // Permit GET request for fetching all businesses
                         .requestMatchers(HttpMethod.GET, "/api/businesses/all").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/businesses/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/requests").permitAll()
                         // Authenticate other requests
                         .anyRequest().authenticated()
                 )

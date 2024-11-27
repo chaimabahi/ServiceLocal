@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -40,23 +42,32 @@ public class BusinessController {
 
     // Login a business
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<String> login(@RequestBody Business loginRequest) {
-        Optional<Business> business = businessRepository.findByEmail(loginRequest.getEmail());
+    public ResponseEntity<?> login(@RequestBody Business loginRequest) {
+        Optional<Business> existingBusiness = businessRepository.findByEmail(loginRequest.getEmail());
 
-        if (business.isPresent()) {
-            if (passwordEncoder.matches(loginRequest.getPassword(), business.get().getPassword())) {
-                String token = jwtUtil.generateToken(business.get().getEmail());
-                return ResponseEntity.ok("Bearer " + token);
+        if (existingBusiness.isPresent()) {
+            // Check password
+            if (passwordEncoder.matches(loginRequest.getPassword(), existingBusiness.get().getPassword())) {
+                // Generate JWT token
+                String token = jwtUtil.generateToken(existingBusiness.get().getEmail());
+
+                // Return success message and token in JSON format
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Login successful");
+                response.put("token", token);
+                response.put("businessId", String.valueOf(existingBusiness.get().getId()));  // Convert businessId to String
+
+                return ResponseEntity.ok(response);
             } else {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid credentials");
+                return ResponseEntity.badRequest().body("Invalid password.");
             }
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid credentials");
+            return ResponseEntity.badRequest().body("Business not found.");
         }
     }
 
     // Get all businesses
-    @GetMapping(value = "/all" , produces = "application/json")
+    @GetMapping(value = "/all", produces = "application/json")
     public ResponseEntity<List<Business>> getAllBusinesses() {
         List<Business> businesses = businessRepository.findAll();
         return ResponseEntity.ok(businesses);

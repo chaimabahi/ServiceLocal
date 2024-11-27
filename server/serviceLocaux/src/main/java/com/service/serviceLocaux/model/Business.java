@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,9 +49,9 @@ public class Business {
     @Column(nullable = false, length = 255)
     private String password; // Encrypted password
 
-    // Relationship with requests
-    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserBusinessRequest> requests;
+
+
+
 
     // Getters and Setters
     public Long getId() {
@@ -125,11 +126,5 @@ public class Business {
         this.password = password;
     }
 
-    public List<UserBusinessRequest> getRequests() {
-        return requests;
-    }
 
-    public void setRequests(List<UserBusinessRequest> requests) {
-        this.requests = requests;
-    }
 }

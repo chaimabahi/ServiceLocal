@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,9 +36,9 @@ public class User {
     @Column(nullable = false, length = 15)
     private String phone;
 
-    // Relationship with requests
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UserBusinessRequest> requests;
+
+
+
 
     // Getters and Setters
     public Long getId() {
@@ -80,11 +81,5 @@ public class User {
         this.phone = phone;
     }
 
-    public List<UserBusinessRequest> getRequests() {
-        return requests;
-    }
 
-    public void setRequests(List<UserBusinessRequest> requests) {
-        this.requests = requests;
-    }
 }

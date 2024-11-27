@@ -14,7 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -58,8 +60,13 @@ public class UserController {
                 // Generate JWT token
                 String token = jwtUtil.generateToken(existingUser.get().getEmail());
 
-                // Return success message and token
-                return ResponseEntity.ok("Bearer " + token);
+                // Return success message and token in JSON format
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Login successful");
+                response.put("token", token); //front
+                response.put("userId", String.valueOf(existingUser.get().getId()));  // Convert userId to String front
+
+                return ResponseEntity.ok(response);
             } else {
                 return ResponseEntity.badRequest().body("Invalid password.");
             }

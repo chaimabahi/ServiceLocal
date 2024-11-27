@@ -27,7 +27,7 @@ const DetailsBusiness = () => {
     try {
       await axios.post("http://localhost:9070/api/businesses/register", formData);
       alert("Business registered successfully!");
-      navigate("/admin"); // Navigate to a success page or reset
+      navigate("/business-login"); // Navigate to a success page or reset
     } catch (error) {
       console.error("Error registering business:", error);
       alert("Registration failed.");

@@ -18,17 +18,20 @@ const LoginBusiness = () => {
         password,
       });
   
-      // Save token in localStorage or Redux
-      localStorage.setItem("token", response.data.token);  // Save token to local storage
+      const businessId = response.data.businessId;
+      console.log(businessId)
   
-      // Handle successful login (e.g., navigate to another page)
-      console.log(response.data.message);  // Show success message
-      navigate("/admin");
+      if (businessId) {
+        localStorage.setItem("token", response.data.token); // Save token to local storage
+        navigate("/admin", { state: { businessId } }); // Pass businessId to the next page
+      } else {
+        setError("Business ID is not available.");
+      }
     } catch (err) {
-      // Handle login error
       setError("Invalid email or password");
     }
   };
+  
   
   const handleBack = () => {
     navigate(-1); // Navigate to the previous page

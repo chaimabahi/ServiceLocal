@@ -2,7 +2,6 @@ package com.service.serviceLocaux.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,20 +18,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        // Permit register and login endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/users/register", "/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/businesses/register", "/api/businesses/login").permitAll()
-                        // Permit GET request for fetching all businesses
-                        .requestMatchers(HttpMethod.GET, "/api/businesses/all").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/businesses/*").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/requests").permitAll()
-                        // Authenticate other requests
-                        .anyRequest().authenticated()
-                )
+                .authorizeRequests()
+                .anyRequest().permitAll() // Allow all requests
+                .and()
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless applications
-                .cors(cors -> {}); // Enable CORS with a global configuration
-
+                .cors(cors -> {}); // Enable CORS with a global configuration // Enable CORS
         return http.build();
     }
 }

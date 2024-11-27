@@ -11,6 +11,8 @@ import LoginUser from "./components/login/LoginUser";
 import LoginBusiness from "./components/login/LoginBusiness";
 import { SaveProvider } from "./components/accueilUser/SaveContext"; 
 import Save from "./components/accueilUser/Save";
+import Requests from "./components/accueilBusiness/Requests";
+import ProfileBusiness  from "./components/accueilBusiness/ProfileBusiness";
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/business/:id" element={<GetBussines />} />
           <Route path="/saved" element={<Save />} /> 
+          <Route path="/requestB" element={<Requests />} /> 
+          <Route path="/profileB" element={<ProfileBusiness  />} /> 
+      
         </Routes>
       </BrowserRouter>
     </SaveProvider> 

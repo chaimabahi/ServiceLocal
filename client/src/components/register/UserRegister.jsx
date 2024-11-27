@@ -29,7 +29,7 @@ const UserRegister = () => {
         },
     });
       console.log(response.data); // Success message
-      navigate("/UserAccueil");  // Redirect after successful registration
+      navigate("/user-login");  // Redirect after successful registration
     } catch (error) {
       // Handle error properly
       if (error.response) {

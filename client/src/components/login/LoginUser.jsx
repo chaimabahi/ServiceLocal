@@ -10,28 +10,28 @@ const LoginUser = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleNext = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:9070/api/users/login", {
-        email,
-        password,
-      });
-  
-      // Save token in localStorage or Redux
-      localStorage.setItem("token", response.data.token);  // Save token to local storage
-  
-      // Handle successful login (e.g., navigate to another page)
-      console.log(response.data.message);  // Show success message
-      navigate("/UserAccueil");
-    } catch (err) {
-      // Handle login error
-      setError("Invalid email or password");
+  // LoginUser.js
+const handleNext = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post("http://localhost:9070/api/users/login", { email, password });
+    const userId = response.data.userId;
+
+    if (userId) {
+      localStorage.setItem("token", response.data.token);
+      navigate("/UserAccueil", { state: { userId } }); // Pass userId here
+    } else {
+      setError("User ID is not available.");
     }
-  };
+  } catch (err) {
+    setError("Invalid email or password");
+  }
+};
+
+  
   
   const handleBack = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1); 
   };
 
   return (

@@ -96,23 +96,30 @@ public class BusinessController {
     }
 
     // Update an existing business
-    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/update/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updateBusiness(@PathVariable Long id, @RequestBody Business updatedBusiness) {
         Optional<Business> existingBusiness = businessRepository.findById(id);
         if (existingBusiness.isPresent()) {
             Business business = existingBusiness.get();
+            System.out.println("Updating business: " + business.getId());
+            System.out.println("Updated fields: " + updatedBusiness.toString());
+
             business.setBusinessName(updatedBusiness.getBusinessName());
             business.setProfession(updatedBusiness.getProfession());
             business.setEmail(updatedBusiness.getEmail());
             if (updatedBusiness.getPassword() != null && !updatedBusiness.getPassword().isEmpty()) {
+                System.out.println("Updating password...");
                 business.setPassword(passwordEncoder.encode(updatedBusiness.getPassword()));
             }
+
             businessRepository.save(business);
             return ResponseEntity.ok("Business updated successfully!");
         } else {
+            System.out.println("Business not found for ID: " + id);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Business not found");
         }
     }
+
 
     // Delete a business
     @DeleteMapping(value = "/{id}", produces = "application/json")

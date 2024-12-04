@@ -3,6 +3,8 @@ import BS from "../assets/Login.png";
 import { Circle } from "lucide-react";
 import { useNavigate } from "react-router-dom"; 
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 const UserRegister = () => {
   const navigate = useNavigate(); 
@@ -28,28 +30,27 @@ const UserRegister = () => {
             'Content-Type': 'application/json',
         },
     });
-      console.log(response.data); // Success message
-      navigate("/user-login");  // Redirect after successful registration
+      console.log(response.data); 
+      toast.success("Registration successful!");  
+      navigate("/user-login");  
     } catch (error) {
-      // Handle error properly
+
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error("Response error:", error.response.data);  // Error message from server
-        console.error("Status code:", error.response.status);    // HTTP status code
+        console.error("Response error:", error.response.data);  
+        toast.error(`Error: ${error.response.data.message || 'Something went wrong'}`); 
       } else if (error.request) {
-        // The request was made but no response was received
         console.error("Request error:", error.request);
+        toast.error("No response from the server. Please try again later.");  
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error("Error:", error.message);
+        toast.error(`Error: ${error.message}`);  
       }
     }
   };
+
   const handleBack = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1);
   };
-  
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
@@ -61,15 +62,14 @@ const UserRegister = () => {
             alt="Services Illustration"
             className="max-w-full mb-4"
           />
-          
-          {/* Circles Section */}
+     
           <div className="flex space-x-4 justify-center mt-4">
-            {/* Gray Circle 1 */}
+     
             <div className="bg-gray-500 rounded-full flex items-center justify-center w-3 h-3">
               <Circle className="text-white" size={0} />
             </div>
 
-            {/* Black Circle */}
+      
             <div className="bg-black rounded-full flex items-center justify-center w-3 h-3">
               <Circle className="text-white" size={0} />
             </div>
@@ -151,6 +151,19 @@ const UserRegister = () => {
           </form>
         </div>
       </div>
+
+     
+      <ToastContainer 
+        position="bottom-right" 
+        autoClose={10000} 
+        hideProgressBar={false} 
+        newestOnTop={false} 
+        closeOnClick 
+        rtl={false} 
+        pauseOnFocusLoss 
+        draggable 
+        pauseOnHover 
+      />
     </div>
   );
 };

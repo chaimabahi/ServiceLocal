@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import axios from "axios";
-import Sidebar from "./Sidebar";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import Sidebar from './Sidebar';
 
 const Requests = () => {
   const [appointments, setAppointments] = useState([]);
-  const { id } = useParams();
-  const location = useLocation();
-  const { businessId } = location.state || {}; 
+  const { businessId } = useLocation().state || {};
 
   useEffect(() => {
     if (!businessId) return;
@@ -16,13 +14,11 @@ const Requests = () => {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get(`http://localhost:9070/api/rendezvous/business/${businessId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setAppointments(response.data);
       } catch (error) {
-        console.error("Error fetching appointments:", error);
+        console.error('Error fetching appointments:', error);
       }
     };
 
@@ -32,51 +28,47 @@ const Requests = () => {
   const deleteAppointment = async (appointmentId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:9070/api/rendezvous/${appointmentId}/business/${businessId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      await axios.delete(`http://localhost:9070/api/rendezvous/${appointmentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-      setAppointments((prevAppointments) =>
-        prevAppointments.filter((appointment) => appointment.id !== appointmentId)
-      );
+      setAppointments((prev) => prev.filter((appointment) => appointment.id !== appointmentId));
     } catch (error) {
-      console.error("Error deleting appointment:", error);
+      console.error('Error deleting appointment:', error);
     }
   };
 
   return (
     <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-8 bg-purple-50">
-        <h1 className="text-3xl font-bold text-purple-700 mb-6">Demandes de Rendez-vous</h1>
-        {appointments.length === 0 ? (
-          <p className="text-purple-600">Aucune demande de rendez-vous pour le moment.</p>
-        ) : (
-          <ul className="space-y-4">
-            {appointments.map((appointment) => (
-              <li
-                key={appointment.id}
-                className="p-6 bg-purple-100 rounded-lg shadow-md hover:shadow-lg transition-all"
-              >
-                <h3 className="font-semibold text-purple-800">{appointment.user.fullName} a demandé un rendez-vous</h3>
-                <p className="text-purple-600">Email: {appointment.user.email}</p>
-                <p className="text-purple-600">Téléphone: {appointment.user.phone}</p>
-                <p className="text-purple-600">
-                  Date du rendez-vous: {new Date(appointment.date).toLocaleString()}
-                </p>
-                <p className="text-purple-600">Statut: {appointment.status}</p>
-                <p className="text-purple-600">Note: {appointment.note || "Aucune note supplémentaire."}</p>
-                <button
-                  onClick={() => deleteAppointment(appointment.id)}
-                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Supprimer
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+      <Sidebar businessId={businessId} />
+      <div className="flex-grow p-6 bg-purple-50 min-h-screen">
+        <div className="max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
+          <h1 className="text-3xl font-bold text-purple-600 mb-6 text-center">Appointments</h1>
+                {appointments.length > 0 ? (
+                  <ul className="space-y-4">
+                  {appointments.map(({ id, date, user, note }) => (
+        <li key={id} className="bg-gray-100 p-4 rounded-md shadow">
+          <div className="flex justify-between">
+            <span className="font-semibold text-purple-500">{user.fullName}</span>
+
+            <button
+              onClick={() => deleteAppointment(id)}
+              className="text-red-600 hover:text-red-800"
+            >
+              Delete
+            </button>
+          </div>
+          <div className="space-y-1">
+            <span className="font-semibold">{user.phone}</span>
+          </div>
+          <p className="text-gray-600">{note || "No note provided"}</p>
+          <p className="text-sm text-black-400">{new Date(date).toLocaleString()}</p>
+        </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 text-center">No appointments found.</p>
+          )}
+        </div>
       </div>
     </div>
   );

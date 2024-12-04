@@ -1,15 +1,27 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import Lottie from 'react-lottie'; 
+import animationData from './assets/dash.json'; 
 
-export const AdminDashboard = () => {
+const AdminDashboard = () => {
   const location = useLocation();
-  const businessId = location.state?.businessId; // Get businessId from location state
+  const businessId = location.state?.businessId;
 
-  console.log("AdminDashboard businessId:", businessId); // Debugging line
+  console.log("AdminDashboard businessId:", businessId);
+
+  // Lottie animation options
+  const lottieOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-white-50">
       {/* Sidebar */}
       <Sidebar businessId={businessId} />
 
@@ -25,9 +37,12 @@ export const AdminDashboard = () => {
 
         {/* Content */}
         <div className="py-6 px-8">
-        <h2 className="text-xl font-semibold mb-4">Welcome to the Dashboard!</h2>
-      <p>Manage your business here. Your business ID is <strong>{businessId}</strong>.</p>
-   
+         
+          {/* Lottie Animation */}
+          <div className="w-full max-w-md mx-auto mb-6">
+            <Lottie options={lottieOptions} height={600} width={750} />
+          </div>
+
           <Outlet context={{ businessId }} /> {/* Pass businessId to Outlet */}
         </div>
       </main>

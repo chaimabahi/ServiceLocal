@@ -11,8 +11,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String secretKey = "yourSecretKey"; // Use a stronger key in a real application
-    private long expirationTime = 86400000; // 1 day in milliseconds
+    private String secretKey = "chaimarefka";
+    private long expirationTime = 86400000;
 
     public String generateToken(String username) {
         // Securely generate a secret key for HS256

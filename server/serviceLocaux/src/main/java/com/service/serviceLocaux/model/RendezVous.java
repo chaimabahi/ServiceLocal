@@ -1,9 +1,5 @@
 package com.service.serviceLocaux.model;
-
-import com.service.serviceLocaux.model.Business;
-import com.service.serviceLocaux.model.User;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 

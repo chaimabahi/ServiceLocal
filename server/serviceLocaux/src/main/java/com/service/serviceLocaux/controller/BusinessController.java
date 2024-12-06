@@ -107,6 +107,14 @@ public class BusinessController {
             business.setBusinessName(updatedBusiness.getBusinessName());
             business.setProfession(updatedBusiness.getProfession());
             business.setEmail(updatedBusiness.getEmail());
+            business.setEmail(updatedBusiness.getName());
+            business.setEmail(updatedBusiness.getBusinessType());
+            business.setEmail(updatedBusiness.getShopName());
+            business.setEmail(updatedBusiness.getType());
+
+
+
+
             if (updatedBusiness.getPassword() != null && !updatedBusiness.getPassword().isEmpty()) {
                 System.out.println("Updating password...");
                 business.setPassword(passwordEncoder.encode(updatedBusiness.getPassword()));

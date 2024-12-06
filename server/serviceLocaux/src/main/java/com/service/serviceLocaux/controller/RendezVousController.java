@@ -59,11 +59,7 @@ public class RendezVousController {
     }
 
 
-    /**
-     * Endpoint pour créer un rendez-vous
-     * @param rendezVous Requête contenant les informations du rendez-vous
-     * @return Réponse avec le rendez-vous créé ou un message d'erreur
-     */
+
     @PostMapping
     public ResponseEntity<?> createRendezVous(@RequestBody RendezVous rendezVous) {
         try {
@@ -96,10 +92,7 @@ public class RendezVousController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
-    /**
-     * Endpoint to get all rendezvous
-     * @return List of all rendezvous
-     */
+
     @GetMapping
     public ResponseEntity<?> getAllRendezVous() {
         try {
@@ -111,11 +104,7 @@ public class RendezVousController {
         }
     }
 
-    /**
-     * Endpoint to get a specific rendezvous by ID
-     * @param id ID of the rendezvous
-     * @return The rendezvous with the provided ID
-     */
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getRendezVousById(@PathVariable Long id) {
         try {
@@ -128,11 +117,7 @@ public class RendezVousController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    /**
-     * Endpoint to delete a rendezvous by ID
-     * @param id ID of the rendezvous to delete
-     * @return Response indicating success or failure
-     */
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteRendezVous(@PathVariable Long id) {
         try {
@@ -149,12 +134,6 @@ public class RendezVousController {
         }
     }
 
-    /**
-     * Endpoint to update a rendezvous
-     * @param id ID of the rendezvous to update
-     * @param rendezVous Updated rendezvous data
-     * @return Response with the updated rendezvous or error message
-     */
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRendezVous(@PathVariable Long id, @RequestBody RendezVous rendezVous) {
         try {

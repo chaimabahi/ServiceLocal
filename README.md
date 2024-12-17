@@ -31,7 +31,7 @@ Spring Security : Sécurisation de l'application.
 
 1️⃣ Cloner le Projet
 
-git clone https://github.com/nom_utilisateur/gestion-de-services-locaux.git
+git clone https://github.com/chaimabahi/gestion-de-services-locaux.git
 
 cd gestion-de-services-locaux
 

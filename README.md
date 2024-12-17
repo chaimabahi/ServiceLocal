@@ -4,47 +4,86 @@ Gestion de Services Locaux est une application web complète permettant aux util
 # 🚀 Technologies Utilisées
 
 Frontend
+
 React : Création de l'interface utilisateur dynamique.
+
 Axios : Communication avec le backend via API REST.
+
 React Router : Gestion de la navigation.
+
 Tailwind CSS : Styling moderne et responsive.
+
 React Context API : Gestion de l'état global.
 
+
 Backend
+
 Spring Boot : Framework pour le développement d'API REST.
+
 Spring Data JPA : Gestion de la base de données.
+
 MySQL : Base de données relationnelle.
+
 Spring Security : Sécurisation de l'application.
 
+
 # 🛠 Installation et Configuration
+
 1️⃣ Cloner le Projet
-bash
-Copier le code
+
 git clone https://github.com/nom_utilisateur/gestion-de-services-locaux.git
+
 cd gestion-de-services-locaux
 
-2. Configuration du Backend (Spring Boot)
+# 2️⃣ Configuration du Backend (Spring Boot)
+
 Ouvrir le dossier backend.
-Configurer le fichier application.properties :
+
+2- Configurer le fichier application.properties :
+
 properties
+
 Copier le code :
+
 spring.datasource.url=jdbc:mysql://localhost:3306/gestion_services_locaux
+
 spring.datasource.username=VOTRE_USERNAME
+
 spring.datasource.password=VOTRE_PASSWORD
+
 spring.jpa.hibernate.ddl-auto=update
+
 spring.jpa.show-sql=true
 
-Compiler et démarrer l'application Spring Boot :
-bash
-Copier le code
+3- Compiler et démarrer l'application Spring Boot :
+
 cd server/serviceLocaux
+
 mvn clean install
+
 mvn spring-boot:run
 
-3. Configuration du Frontend (React)
-Ouvrir le dossier frontend.
-Installer les dépendances :
+
+# 3️⃣ Configuration du Frontend (React)
+
+1- Ouvrir le dossier frontend.
+
+2- Installer les dépendances :
+
 cd client
+
 npm install
-Lancer le serveur de développement React :
+
+3- Lancer le serveur de développement React :
+
 npm start
+
+# 🎯 Fonctionnalités Principales
+
+🔍 Recherche de Services : Trouvez facilement des artisans locaux.
+
+📅 Réservation en Ligne : Réservez directement des services.
+
+💬 Interaction Utilisateur : Laissez des avis et notes pour les prestataires.
+
+🔐 Authentification Sécurisée : Sécurisé grâce à Spring Security.

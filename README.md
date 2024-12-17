@@ -1,16 +1,14 @@
-# Gestion de Services Locaux
-Description
-Gestion de Services Locaux est une application web permettant aux utilisateurs de rechercher, réserver et interagir avec des artisans locaux et des prestataires de services (plombiers, électriciens, mécaniciens, services de nettoyage, etc.). Le projet utilise React pour le frontend et Spring Boot pour le backend afin de fournir une expérience utilisateur fluide et des fonctionnalités robustes.
+🛠 Gestion de Services Locaux
+Gestion de Services Locaux est une application web complète permettant aux utilisateurs de rechercher, réserver et interagir avec des artisans locaux et des prestataires de services, tels que plombiers, électriciens, mécaniciens, services de nettoyage, etc. Ce projet utilise React pour le frontend et Spring Boot pour le backend, offrant une expérience utilisateur fluide et des fonctionnalités robustes.
 
-Technologies Utilisées
-Frontend : React
+🚀 Technologies Utilisées
+Frontend
 React : Création de l'interface utilisateur dynamique.
 Axios : Communication avec le backend via API REST.
 React Router : Gestion de la navigation.
 Tailwind CSS : Styling moderne et responsive.
 React Context API : Gestion de l'état global.
-
-Backend : Spring Boot
+Backend
 Spring Boot : Framework pour le développement d'API REST.
 Spring Data JPA : Gestion de la base de données.
 MySQL : Base de données relationnelle.
